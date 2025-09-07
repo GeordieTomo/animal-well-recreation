@@ -13,6 +13,7 @@ texture = SubResource("ViewportTexture_7mycd")
 offset = Vector2(160, 90)
 
 [node name="GameViewport (water layer)" type="SubViewport" parent="GameRenderer"]
+canvas_item_default_texture_filter = 0
 size = Vector2i(320, 180)
 
 [node name="WaterPass" parent="GameRenderer/GameViewport (water layer)" instance=ExtResource("1_148br")]

@@ -39,6 +39,7 @@ position = Vector2(160, 90)
 texture = SubResource("ViewportTexture_uo6cu")
 
 [node name="WaterfallPass" type="SubViewport" parent="GameRenderer"]
+canvas_item_default_texture_filter = 0
 size = Vector2i(320, 180)
 
 [node name="Waterfalls" type="CanvasLayer" parent="GameRenderer/WaterfallPass"]
