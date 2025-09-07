@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bfponrvpjjw8h" path="res://textures/background.png" id="1_iotsf"]
 [ext_resource type="Shader" uid="uid://3hggt8sc8e0j" path="res://shaders/background.gdshader" id="1_lc2xo"]
-[ext_resource type="Shader" uid="uid://d4di55fiybkgd" path="res://shaders/foreground-lighting.gdshader" id="1_vef74"]
+[ext_resource type="Shader" uid="uid://d4di55fiybkgd" path="res://shaders/tilemap-lighting.gdshader" id="1_vef74"]
 [ext_resource type="Script" uid="uid://bxffh56wdb8q7" path="res://scripts/tilemap_duplicator.gd" id="2_hve3p"]
 [ext_resource type="Texture2D" uid="uid://cpiqguue4wgh8" path="res://textures/empty-tile.png" id="3_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://b5k3tnxkgjdvu" path="res://textures/new_wall.png" id="4_iotsf"]

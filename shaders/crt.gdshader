@@ -9,10 +9,20 @@ void fragment() {
 
 	vec4 behind = texture(SCREEN_TEXTURE, screen_uv);
 
-	float scan_line = smoothstep(0.,1., 0.5+0.5*sin((UV.y)/pixel_size.y*(2.*PI)/6.+1.5));
-	behind.rgb *= mix(1.0,0.4,scan_line);
-
-	COLOR = behind;
+	float scan_line = 0.5 * step(4., mod(UV.y / pixel_size.y-1.,6.)) + 0.5 * step(2., mod(UV.y / pixel_size.y-2.,6.)) ;
+	
+	vec4 colour = vec4(0.);
+	for (int x=0;x<3;x++){
+		colour += 1./6. * texture(SCREEN_TEXTURE, screen_uv+vec2(pixel_size.x*float(x),0.));
+		colour += 1./6. * texture(SCREEN_TEXTURE, screen_uv+vec2(-pixel_size.x*float(x),0.));
+	}
+	//for (int y =1; y<3; y++){
+		//colour += 1./8. * texture(SCREEN_TEXTURE, screen_uv+vec2(0.,pixel_size.y*float(y)));
+		//colour += 1./8. * texture(SCREEN_TEXTURE, screen_uv+vec2(0.,-pixel_size.y*float(y)));
+	//}
+	colour.rgb *= 1. - (0.5*scan_line-0.5*(colour.r*0.3+colour.g*0.59+colour.b*0.11));
+	
+	COLOR = colour;
 }
 
 //void light() {

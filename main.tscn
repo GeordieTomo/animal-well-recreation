@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b4ntg0o5jt38i" path="res://textures/b-wand.png" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://u7xbvmcf2qu6" path="res://render_layers/lighting_scene.tscn" id="2_lquwl"]
-[ext_resource type="Shader" uid="uid://pr6p256jd268" path="res://shaders/crt_new.gdshader" id="5_lquwl"]
+[ext_resource type="Shader" uid="uid://pr6p256jd268" path="res://shaders/crt.gdshader" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://cwm5aj5ck044c" path="res://scripts/runtime_enable.gd" id="9_4c57u"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_1bvp3"]
@@ -32,7 +32,6 @@ size = Vector2i(320, 180)
 offset = Vector2(960, 540)
 
 [node name="CRTLayer" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("9_4c57u")
 
 [node name="CRTShader" type="ColorRect" parent="CRTLayer"]
