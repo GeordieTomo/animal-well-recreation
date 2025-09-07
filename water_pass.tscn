@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://cxrykgasvpdf6"]
+
+[ext_resource type="PackedScene" uid="uid://32tdwr323l7f" path="res://game.tscn" id="1_ppter"]
+[ext_resource type="Shader" uid="uid://7fc4qdvux8to" path="res://water_reflection.gdshader" id="2_uo6cu"]
+[ext_resource type="Shader" uid="uid://2tsga6werf4y" path="res://waterfall.gdshader" id="3_5g7ln"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_uo6cu"]
+viewport_path = NodePath("GameRenderer/WaterfallPass")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_272bh"]
+viewport_path = NodePath("GameRenderer/WaterfallPass/GameRenderer/GameViewport (pixelated)")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_272bh"]
+resource_local_to_scene = true
+shader = ExtResource("3_5g7ln")
+shader_parameter/SCREEN_TEXTURE = SubResource("ViewportTexture_272bh")
+shader_parameter/water_tint_colour = Color(0.434557, 0.452498, 0.930014, 1)
+shader_parameter/water_droplet_colour = Color(0.131401, 0.327736, 0.953919, 1)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_4c57u"]
+viewport_path = NodePath("GameRenderer/WaterfallPass/GameRenderer/GameViewport (pixelated)")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lquwl"]
+viewport_path = NodePath("GameRenderer/WaterfallPass")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1bvp3"]
+resource_local_to_scene = true
+shader = ExtResource("2_uo6cu")
+shader_parameter/SCREEN_TEXTURE = SubResource("ViewportTexture_lquwl")
+shader_parameter/water_tint_colour = Color(0.65, 0.708333, 1, 1)
+shader_parameter/y_level = 160.0
+
+[node name="WaterPass" type="Node2D"]
+texture_filter = 1
+
+[node name="GameRenderer" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(160, 90)
+texture = SubResource("ViewportTexture_uo6cu")
+
+[node name="WaterfallPass" type="SubViewport" parent="GameRenderer"]
+size = Vector2i(320, 180)
+
+[node name="Waterfalls" type="CanvasLayer" parent="GameRenderer/WaterfallPass"]
+layer = 5
+
+[node name="Waterfall" type="ColorRect" parent="GameRenderer/WaterfallPass/Waterfalls"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_272bh")
+offset_left = 180.0
+offset_right = 196.0
+offset_bottom = 180.0
+
+[node name="Waterfall2" type="ColorRect" parent="GameRenderer/WaterfallPass/Waterfalls"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_272bh")
+offset_left = 14.0
+offset_right = 30.0
+offset_bottom = 180.0
+
+[node name="GameRenderer" type="Sprite2D" parent="GameRenderer/WaterfallPass"]
+texture_filter = 1
+position = Vector2(160, 90)
+texture = SubResource("ViewportTexture_4c57u")
+
+[node name="GameViewport (pixelated)" type="SubViewport" parent="GameRenderer/WaterfallPass/GameRenderer"]
+snap_2d_transforms_to_pixel = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(320, 180)
+
+[node name="Game" parent="GameRenderer/WaterfallPass/GameRenderer/GameViewport (pixelated)" instance=ExtResource("1_ppter")]
+
+[node name="WaterReflection" type="CanvasLayer" parent="."]
+
+[node name="WaterReflection" type="ColorRect" parent="WaterReflection"]
+z_index = 10
+texture_filter = 1
+material = SubResource("ShaderMaterial_1bvp3")
+custom_minimum_size = Vector2(320, 180)
+offset_right = 320.0
+offset_bottom = 180.0

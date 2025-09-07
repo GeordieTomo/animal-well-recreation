@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://32tdwr323l7f"]
+[gd_scene load_steps=18 format=4 uid="uid://32tdwr323l7f"]
 
 [ext_resource type="Shader" uid="uid://d4di55fiybkgd" path="res://foreground-lighting.gdshader" id="1_vef74"]
 [ext_resource type="Script" uid="uid://bxffh56wdb8q7" path="res://tilemap_duplicator.gd" id="2_hve3p"]
@@ -7,14 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://se6kvs3tqu3b" path="res://textures/brick-wall-tile.png" id="5_lc2xo"]
 [ext_resource type="Texture2D" uid="uid://brkvlvvtwimcl" path="res://textures/column.png" id="6_215e1"]
 [ext_resource type="PackedScene" uid="uid://y4h2wh5mnha2" path="res://player.tscn" id="7_7sc4i"]
-[ext_resource type="Texture2D" uid="uid://b4ntg0o5jt38i" path="res://textures/b-wand.png" id="8_80cx4"]
-[ext_resource type="Texture2D" uid="uid://dpop4usrxb4rv" path="res://textures/light-2.png" id="9_e8heu"]
-
-[sub_resource type="Environment" id="Environment_efxa6"]
-background_mode = 3
-glow_enabled = true
-glow_strength = 1.55
-glow_bloom = 0.25
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_efxa6"]
 shader = ExtResource("1_vef74")
@@ -90,9 +82,6 @@ turbulence_enabled = true
 
 [node name="Game" type="Node2D"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_efxa6")
-
 [node name="ForegroundTilemapRenderer" type="Sprite2D" parent="."]
 z_index = 10
 material = SubResource("ShaderMaterial_efxa6")
@@ -119,11 +108,6 @@ tile_set = SubResource("TileSet_7mycd")
 [node name="Player" parent="." instance=ExtResource("7_7sc4i")]
 position = Vector2(143, 128.83)
 
-[node name="B-wand" type="Sprite2D" parent="."]
-z_index = 20
-position = Vector2(9, 170)
-texture = ExtResource("8_80cx4")
-
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 z_index = 100
 position = Vector2(165, 91)
@@ -131,7 +115,3 @@ amount = 20
 lifetime = 15.0
 preprocess = 15.0
 process_material = SubResource("ParticleProcessMaterial_4c57u")
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(225.01, 113.08)
-texture = ExtResource("9_e8heu")

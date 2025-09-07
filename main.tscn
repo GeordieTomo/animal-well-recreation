@@ -1,49 +1,43 @@
 [gd_scene load_steps=8 format=3 uid="uid://ghvt6oljew3o"]
 
-[ext_resource type="PackedScene" uid="uid://32tdwr323l7f" path="res://game.tscn" id="1_h2yge"]
-[ext_resource type="Shader" uid="uid://7fc4qdvux8to" path="res://water_reflection.gdshader" id="2_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://b4ntg0o5jt38i" path="res://textures/b-wand.png" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://u7xbvmcf2qu6" path="res://lighting_scene.tscn" id="2_lquwl"]
 [ext_resource type="Shader" uid="uid://pr6p256jd268" path="res://crt_new.gdshader" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://cwm5aj5ck044c" path="res://runtime_enable.gd" id="9_4c57u"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_4c57u"]
-viewport_path = NodePath("GameRenderer/GameViewport (pixelated)")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1bvp3"]
-shader = ExtResource("2_1bvp3")
-shader_parameter/water_tint_colour = Color(0.65, 0.708333, 1, 1)
-shader_parameter/y_level = 160.0
+[sub_resource type="ViewportTexture" id="ViewportTexture_1bvp3"]
+viewport_path = NodePath("LightingRenderer/LightingViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7mycd"]
 shader = ExtResource("5_lquwl")
 
+[sub_resource type="Environment" id="Environment_1bvp3"]
+background_mode = 3
+tonemap_white = 0.0
+glow_enabled = true
+glow_strength = 1.13
+glow_bloom = 0.28
+adjustment_enabled = true
+
 [node name="Main" type="Node2D"]
 
-[node name="GameRenderer" type="Sprite2D" parent="."]
-position = Vector2(960, 540)
+[node name="LightingRenderer" type="Sprite2D" parent="."]
 scale = Vector2(6, 6)
-texture = SubResource("ViewportTexture_4c57u")
+texture = SubResource("ViewportTexture_1bvp3")
+offset = Vector2(160, 90)
 
-[node name="GameViewport (pixelated)" type="SubViewport" parent="GameRenderer"]
-snap_2d_transforms_to_pixel = true
+[node name="B-wand" type="Sprite2D" parent="LightingRenderer"]
+z_index = 50
+position = Vector2(9, 170)
+texture = ExtResource("2_1bvp3")
+
+[node name="LightingViewport" type="SubViewport" parent="LightingRenderer"]
 size = Vector2i(320, 180)
 
-[node name="Game" parent="GameRenderer/GameViewport (pixelated)" instance=ExtResource("1_h2yge")]
+[node name="LightingScene" parent="LightingRenderer/LightingViewport" instance=ExtResource("2_lquwl")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(960, 540)
-
-[node name="WaterLayer" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="WaterLayer"]
-material = SubResource("ShaderMaterial_1bvp3")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="BackBufferCopy" type="BackBufferCopy" parent="WaterLayer"]
-copy_mode = 2
 
 [node name="CRTLayer" type="CanvasLayer" parent="."]
 visible = false
@@ -58,3 +52,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1bvp3")

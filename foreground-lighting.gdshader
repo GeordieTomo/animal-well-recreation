@@ -69,7 +69,7 @@ void fragment() {
 	else {
 		// 2D noise that evolves over time
 	    float n = layered_noise(pixel_uv);
-		float s1 = 0.2 * step(0.4,n) + 0.3 * step(0.5,n) + 0.3 * step(0.6,n);
+		float s1 = 0.2 + 0.2 * step(0.4,n) + 0.2 * step(0.5,n) + 0.2 * step(0.6,n);
 		tex_colour.rgb *= vec3(s1);
 	}
 	
