@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://y4h2wh5mnha2"]
+
+[ext_resource type="Script" uid="uid://b2u1h0gcy2cws" path="res://player_controller.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://tu5warchglyx" path="res://textures/little-guy.png" id="2_i3pqv"]
+[ext_resource type="Script" uid="uid://dkxx2p4iixrgo" path="res://player_display.gd" id="3_i3pqv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_272bh"]
+size = Vector2(7, 7.8)
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_onrkg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_272bh")
+
+[node name="player_display" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("2_i3pqv")
+script = ExtResource("3_i3pqv")
