@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://cxrykgasvpdf6"]
 
-[ext_resource type="PackedScene" uid="uid://32tdwr323l7f" path="res://game.tscn" id="1_ppter"]
-[ext_resource type="Shader" uid="uid://7fc4qdvux8to" path="res://water_reflection.gdshader" id="2_uo6cu"]
-[ext_resource type="Shader" uid="uid://2tsga6werf4y" path="res://waterfall.gdshader" id="3_5g7ln"]
+[ext_resource type="PackedScene" uid="uid://32tdwr323l7f" path="res://render_layers/game.tscn" id="1_ppter"]
+[ext_resource type="Shader" uid="uid://7fc4qdvux8to" path="res://shaders/water_reflection.gdshader" id="2_uo6cu"]
+[ext_resource type="Shader" uid="uid://2tsga6werf4y" path="res://shaders/waterfall.gdshader" id="3_5g7ln"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_uo6cu"]
 viewport_path = NodePath("GameRenderer/WaterfallPass")

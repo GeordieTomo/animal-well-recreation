@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://u7xbvmcf2qu6"]
 
-[ext_resource type="PackedScene" uid="uid://cxrykgasvpdf6" path="res://water_pass.tscn" id="1_148br"]
+[ext_resource type="PackedScene" uid="uid://cxrykgasvpdf6" path="res://render_layers/water_pass.tscn" id="1_148br"]
 [ext_resource type="Texture2D" uid="uid://dpop4usrxb4rv" path="res://textures/light-2.png" id="2_bjfl3"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_7mycd"]
@@ -19,5 +19,5 @@ size = Vector2i(320, 180)
 [node name="WaterPass" parent="GameRenderer/GameViewport (water layer)" instance=ExtResource("1_148br")]
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(223, 142)
+position = Vector2(230, 103)
 texture = ExtResource("2_bjfl3")

@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://ghvt6oljew3o"]
 
 [ext_resource type="Texture2D" uid="uid://b4ntg0o5jt38i" path="res://textures/b-wand.png" id="2_1bvp3"]
-[ext_resource type="PackedScene" uid="uid://u7xbvmcf2qu6" path="res://lighting_scene.tscn" id="2_lquwl"]
-[ext_resource type="Shader" uid="uid://pr6p256jd268" path="res://crt_new.gdshader" id="5_lquwl"]
-[ext_resource type="Script" uid="uid://cwm5aj5ck044c" path="res://runtime_enable.gd" id="9_4c57u"]
+[ext_resource type="PackedScene" uid="uid://u7xbvmcf2qu6" path="res://render_layers/lighting_scene.tscn" id="2_lquwl"]
+[ext_resource type="Shader" uid="uid://pr6p256jd268" path="res://shaders/crt_new.gdshader" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://cwm5aj5ck044c" path="res://scripts/runtime_enable.gd" id="9_4c57u"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_1bvp3"]
 viewport_path = NodePath("LightingRenderer/LightingViewport")
