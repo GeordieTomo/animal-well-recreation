@@ -51,7 +51,7 @@ void fragment() {
 	vec4 above_colour = texture(TEXTURE, UV + vec2(0.0,-pixel_size.y));
 	vec4 right_colour = texture(TEXTURE, UV + vec2(pixel_size.x,0.0));
 	vec4 left_colour = texture(TEXTURE, UV + vec2(-pixel_size.x,0.0));
-	vec4 down_colour = texture(TEXTURE, UV + vec2(0.0,-pixel_size.y));
+	vec4 down_colour = texture(TEXTURE, UV + vec2(0.0,pixel_size.y));
 	
 	vec2 noise_offset = (-0.5 + noise(UV*100.)) * pixel_size*3.;
 	vec4 above_check = texture(TEXTURE, UV - noise_offset + vec2(8.*pixel_size.x,-8.*pixel_size.y));
@@ -59,19 +59,16 @@ void fragment() {
 	vec4 left_check = texture(TEXTURE, UV - noise_offset + vec2(-8.*pixel_size.x,-8.*pixel_size.y));
 	vec4 down_check = texture(TEXTURE, UV - noise_offset + vec2(-8.*pixel_size.x,8.*pixel_size.y));
 	
-	if ((above_colour.a * down_colour.a * left_colour.a * right_colour.a == 0.0) && tex_colour.a == 1.) {
-		//float lum = dot(tex_colour.rgb, vec3(0.2126, 0.7152, 0.0722));
-		tex_colour.rgb *= 1.5;
-	}
-	else if ((above_check.a * right_check.a * left_check.a * down_check.a != 0.0) && tex_colour.a == 1.) {
-		tex_colour.rgb = vec3(0.);
-	}
-	else {
-		// 2D noise that evolves over time
-	    float n = layered_noise(pixel_uv);
-		float s1 = 0.2 + 0.2 * step(0.4,n) + 0.2 * step(0.5,n) + 0.2 * step(0.6,n);
-		tex_colour.rgb *= vec3(s1);
-	}
+    float brightness = 1.;
+	// dark inner
+	brightness *= (1.-above_check.a * right_check.a * left_check.a * down_check.a);
+	// lighting step function
+	float n = layered_noise(pixel_uv);
+	brightness *= 0.3 * step(0.3,n) + 0.4 * step(0.35,n) + 0.3 * step(0.38,n);
+	// outline effect
+	brightness = max(brightness, 7.0 * (1. - above_colour.a * left_colour.a) + 2.5 * (1.0 - down_colour.a * right_colour.a) * tex_colour.a);
+	
+	tex_colour.rgb *= brightness;
 	
     COLOR = tex_colour;
 }

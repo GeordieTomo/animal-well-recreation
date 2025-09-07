@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ghvt6oljew3o"]
+[gd_scene load_steps=7 format=3 uid="uid://ghvt6oljew3o"]
 
 [ext_resource type="Texture2D" uid="uid://b4ntg0o5jt38i" path="res://textures/b-wand.png" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://u7xbvmcf2qu6" path="res://lighting_scene.tscn" id="2_lquwl"]
@@ -10,14 +10,6 @@ viewport_path = NodePath("LightingRenderer/LightingViewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7mycd"]
 shader = ExtResource("5_lquwl")
-
-[sub_resource type="Environment" id="Environment_1bvp3"]
-background_mode = 3
-tonemap_white = 0.0
-glow_enabled = true
-glow_strength = 1.13
-glow_bloom = 0.28
-adjustment_enabled = true
 
 [node name="Main" type="Node2D"]
 
@@ -52,6 +44,3 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_1bvp3")
